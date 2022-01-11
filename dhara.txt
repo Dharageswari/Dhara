@@ -1,5 +1,5 @@
 1.print the even numbers from 1 to n using while loop:
-
+//hai
 #include <stdio.h>
 
 int main() {
