@@ -1,0 +1,627 @@
+1.
+
+#include<stdio.h>
+int main(){
+	int a = 130;
+	char *ptr;
+	ptr = (char *)&a;
+	printf("%d ",*ptr);
+	return 0;
+}
+
+ANS:-126
+
+2.
+
+#include<stdio.h>
+int main(){
+	int i = 3;
+	int *j;
+	int **k;
+	j = &i;
+	k = &j;//k---j--address///k one time increment---value
+                  ++k;
+	printf("%d ",**k);
+	return 0;
+}
+
+ANS:Garbage value
+
+
+
+3.
+
+#include<stdio.h>
+int main(){
+	int i = 3;
+	int *j;
+	j = &i;
+	j++;
+	printf("%d ",*j);
+	return 0;
+}
+
+ANS:Garbagge value
+
+
+4.
+
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char *ptr = "hello";
+	char a[22];
+	strcpy(a, "world");
+	printf("\n%s %s",ptr, a);
+	return 0;
+}
+
+ANS:helloworld
+
+
+
+
+5.
+
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char *ptr = "hello";
+	char a[22];
+	*ptr = "world";
+	printf("\n%s %s",ptr, a);
+	return 0;
+}
+
+ANS:compilelation error
+
+
+
+6.
+
+#include<stdio.h>
+int main()
+{
+	char *ptr = "helloworld";
+	printf(ptr + 4);
+	return 0;
+}
+
+
+ANS: oworld
+
+
+7.
+
+#include<stdio.h>
+int main()
+{
+	char *ptr = "2braces.com";//+-
+	printf("%c\n",*&*ptr);
+	return 0;
+}
+
+
+Ans: 2
+
+
+8.
+
+#include<stdio.h>
+#include<string.h>
+int main(){
+	register a = 1;//stores the new memory location 
+	int far *ptr;
+	ptr = &a;
+	printf("%u",ptr);
+	return 0;
+}
+
+// C doesn't allow multiple storage class specifiers for a variable.
+
+ANS:Runtime error
+
+
+9.
+
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char a = 30, b = 5;
+	char *p = &a, *q = &b;
+	printf("%d", p - q);
+	return 0;
+}
+
+
+ANS:- 1
+
+
+10.
+
+#include<stdio.h>
+int main(){
+	int *ptr, b;
+	b = sizeof(ptr);
+	printf("%d" , b);
+	return 0;
+}
+
+ANS:  4
+
+
+
+11.
+
+#include<stdio.h>
+struct classroom
+{
+	int students[7];
+};
+int main()
+{
+	struct classroom cr = {2, 3, 5, 7, 11, 13};
+	int *ptr;
+	ptr = (int *)&cr;
+	printf("%d",*(ptr + 4));
+	return 0;
+}
+
+ ANS:  11
+
+
+12.
+
+#include<stdio.h>
+unsigned long int (*function())[5]
+{
+	static unsigned long int arr[5] = {2, 3, 5, 7, 11};
+	printf("%d", *arr);
+	return &arr;
+}
+int main(){
+	unsigned long int (*ptr)[5];
+	ptr = function();
+	printf("%d", *(*ptr + 4));
+	return 0;
+}
+
+
+
+
+ANS:2,11
+
+
+
+13.
+
+#include<stdio.h>
+int main(){
+	int a = 25, b;
+	int *ptr, *ptr1;
+	ptr = &a;
+	ptr1 = &b;
+	b = 36;
+	printf("%d  %d",*ptr, *ptr1);
+	return 0;
+}
+
+
+
+ANS: 25,36
+
+
+14.
+
+#include<stdio.h>
+int main(){
+	int * ptr ;
+	printf("%d", sizeof(ptr));
+	return 0;
+}
+
+ANS: 4
+
+
+
+15.
+
+#include<stdio.h>
+int main(){
+	int *ptr = 2;
+	printf("%d", sizeof(ptr));
+	return 0;
+}
+
+ANS:compilation error
+
+
+
+16.
+
+#include<stdio.h>
+int main(){
+	int *ptr;
+	*ptr = 5;
+	printf("%d" , *ptr);
+	return 0;
+}
+
+ANS:RUNtime error
+
+
+
+17.
+
+#include<stdio.h>
+int main(){
+	int a = 36;
+	int *ptr;
+	ptr = &a;
+	printf("%u %u", *&ptr , &*ptr);
+	return 0;
+}
+
+ANS:  ADDRESS ADDRESS
+
+
+
+
+18.
+
+#include<stdio.h>
+int main(){
+	int num = 10;
+	printf("num = %d addresss of num = %u",num, &num);
+	num++;//num=num+1;
+	printf("\n num = %d addresss of num = %u",num, &num);
+	return 0;
+}
+
+
+ANS:num = 10 address of num = 2293436
+    num = 11 address of num = 2293436
+
+
+
+19.
+
+#include<stdio.h>
+int main(){
+	int i = 25;
+	int *j;
+	int **k;
+	j = &i;
+	k = &j;
+	printf("%u %u %u ",k,*k,**k);
+	return 0;
+}
+
+ANS: address address value
+
+
+20.
+
+#include<stdio.h>
+int main(){
+	int a, b, c;
+	char *p = 0;
+	int *q = 0;
+	double *r = 0;
+	a = (int)(p + 1);//1
+	b = (int)(q + 1);//4
+	c = (int)(r + 1);//8
+	printf("%d %d  %d",a, b, c);
+	return 0;
+}
+
+ANS:1 4  8
+
+
+21.
+
+#include<stdio.h>
+int main()
+{
+	char *ptr;
+	char string[] = "learn C from 2braces.com";
+	ptr = string;
+	ptr += 6;//ptr=ptr+6
+	printf("%s",ptr);
+	return 0;
+}
+
+
+ANS:C from 2braces.com 
+
+
+22.
+
+#include<stdio.h>
+int main()
+{
+	const int a = 5;
+	const int *ptr;
+	ptr = &a;
+	*ptr = 10;
+	printf("%d\n", a);
+	return 0;
+}
+
+ANS:Compilation error
+
+
+23.
+
+#include<stdio.h>
+int main()
+{
+	printf("%d", sizeof(void *));//void size=1//pointer 4
+	return 0;
+}
+
+ANS: 4
+
+
+
+24.
+
+#include<stdio.h>
+void function(char**);
+int main()
+{
+	char *arr[] = { "ant", "bat", "cat", "dog", "egg", "fly" };
+	function(arr);
+	return 0;
+}
+void function(char **ptr)
+{
+	char *ptr1;
+	ptr1 = (ptr += sizeof(int))[-2];//ptr=ptr+4-2
+	printf("%s\n", ptr1);
+}
+
+ANS: cat
+
+
+25.
+
+#include<stdio.h>
+int main()
+{
+	struct node
+	{
+	int a, b, c;
+	};
+	struct node num = {3, 5, 6};
+	struct node *ptr = & num;
+	printf("%d\n", *((int*)ptr + 1 + (3-2)));//ptr+1+1
+	return 0;
+}
+
+ANS:6
+
+
+26.
+
+#include<stdio.h>
+int main(){
+	char *ptr = "Pointer in c", arr[15];
+	arr[15] = *ptr;
+	printf("%c",arr[0]);
+	return 0;
+}
+
+ANS:Garbage value
+
+
+27.
+
+#include<stdio.h>
+int main(){
+ char arr[15] = "pointer array";
+ int *ptr;
+ ptr = arr;
+ printf("%c",ptr[1]);
+ return 0;
+}
+
+ANS:t
+
+
+
+28.
+
+#include<stdio.h>
+int main()
+{
+ int a = 10, b = 6;
+ int *ptr;
+ ptr = &b;
+ printf(" %d ", a  *  *ptr);
+ return 0;
+}
+
+
+ANS: 60
+
+
+29.
+
+#include<stdio.h>
+int main()
+{
+ int *iptr;
+ int i, arr[2][2] = {10, 11, 12, 13};
+ iptr = *arr ;
+ printf("%d ", *(iptr+2));
+ return 0;
+}
+
+ANS:12
+
+
+30.
+
+#include<stdio.h>
+int main()
+{
+char *cities[] = {"Delhi", "London", "Sydney"};
+int **i = &cities[0];
+printf("%c\n", **i);
+return 0;
+}
+
+ANS:D
+
+31.
+
+#include<stdio.h>
+int main(){
+ char *cities[] = {"UAE", "Spain", "America"};
+ int **i = &cities[0];
+ int **j = &cities[1];
+ int **k = &cities[2];
+ printf("%c%c%c\n", **i,**j,**k);
+ return 0;
+}
+
+ANS:USA
+
+
+32.
+
+
+#include<stdio.h>
+int main(){
+ char array[5] = "Knot", *ptr, i, *ptr1;
+ ptr = &array[1];
+ ptr1 = ptr + 3;
+ *ptr1 = 101;//e
+ for(i = 0; i < 4;i++)
+ printf("%c", *ptr++);
+ return 0;
+}
+
+ANS:note
+
+
+33.
+
+#include<stdio.h>
+int main()
+{
+	char *ptr = "Pointer-to-String", i;
+	printf("%s", ++ptr);
+	return 0;
+}
+
+ANS: ointer-to-String
+
+
+34.
+
+#include<stdio.h>
+int main()
+{
+	char *str = "His";//length=3
+	int i;
+	for(i = 0; i < strlen(str); i++)//0-1-2-3
+	printf("%s", str++);//His-is-s
+	return 0;
+}
+
+ANS:Hisis
+
+
+35.
+
+#include<stdio.h>
+int main()
+{
+	char arr[10] = "Mango", *ptr;
+	ptr = (&arr[1]++);//ptr++//str++
+	printf("%s",ptr++);
+	return 0;
+}
+
+
+ANS:complilation error
+
+
+36
+
+
+#include<stdio.h>
+int main(){
+ int i = 5;
+ void *vptr; 
+ vptr = &i;
+ printf("\nValue of iptr = %d ", *vptr);
+ return 0;
+}
+
+//Void pointer cannot be dereferenced without typecasting
+
+ANS:garbagge value
+
+37.Fill the question mark to get "void pointer" as an output?
+
+
+#include<stdio.h>
+int main(){
+ char *ptr = "void pointer";
+ void *vptr;
+ vptr = &ptr;
+ printf("%s" , *(char **) vptr);//*(char **) vptr
+ return 0;
+}
+
+ANS: *(char **)vptr
+
+38.
+
+#include<stdio.h>
+#define NULL "error";//marco
+int main()
+{
+ char *ptr = NULL;
+ printf("%s",ptr);
+ return 0;
+}
+
+ANS:error
+
+39.
+
+
+
+39. Which type of pointer is a most convention way of storing raw address in c programming?
+
+A. Void pointer
+
+B. Null pointer 
+
+C. Integer pointer 
+
+D. Double pointer
+
+ANS:Void pointer
+
+
+40.Fill the question mark to get "5" as an output?
+
+#include<stdio.h>
+int main()
+{
+ int i = 5,*ptr;
+ ptr= &i;
+ void *vptr; 
+ vptr = &ptr;
+ printf("\nValue of iptr = %d ", **(int** )vptr);//**(int** )vptr
+ return 0;
+}
+
+ANS:
+**(int **)vptr
+ 
